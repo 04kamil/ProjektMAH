@@ -1,0 +1,148 @@
+﻿<Controls:MetroWindow x:Class="ProjektMAH.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektMAH"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="Metoda analizy hierarchii Saaty'ego" Height="600" Width="1000" 
+        ResizeMode="CanMinimize">
+
+    <StackPanel>
+        <StackPanel.Background>
+            <!--<ImageBrush ImageSource="/Assets\GFX\business-networking.jpg"/>-->
+            <SolidColorBrush Color="WhiteSmoke"/>
+        </StackPanel.Background>
+        <TabControl>
+            <TabControl.Background>
+                <SolidColorBrush Color="White" Opacity="1.0"/>
+            </TabControl.Background>
+            <TabItem Header="Stwórz model">
+                <StackPanel Height="490" Width="1000">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="White" Opacity="0.8"/>
+                    </StackPanel.Background>
+                    <GroupBox Width="500" Margin="10">
+                        <StackPanel>
+                            <TextBlock Margin="10" TextAlignment="Center" FontSize="26" Foreground="Gray">Cel</TextBlock>
+                            <TextBox x:Name="GoalTextBox" Controls:TextBoxHelper.ClearTextButton="True"  Width="200" Foreground="Gray"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <StackPanel Orientation="Horizontal">
+                        <GroupBox Width="500" Height="300" Margin="10">
+                            <StackPanel>
+                                <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock Margin="0 0 10 0" TextAlignment="Center"  Foreground="Gray" FontSize="22" FontWeight="Medium">Kryteria:</TextBlock>
+                                    <TextBox x:Name="CriterionTextBox" Controls:TextBoxHelper.ClearTextButton="True"  Width="200" Foreground="Gray" HorizontalAlignment="Center"></TextBox>
+                                    <Button x:Name="CriterionBtn" Margin="10 0 45 0" FontSize="14" Click="CriterionBtn_Click">Dodaj</Button>
+                                </StackPanel>
+                                <Grid>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                        <DataGrid x:Name="CryteriumDG" Width="200" MaxHeight="150"></DataGrid>
+                                    </ScrollViewer>
+                                </Grid>
+                                <Button x:Name="CriterionClearBtn" Width="200" Margin="10 0 0 0" FontSize="14" Click="CriterionClearBtn_Click">Wyczyść</Button>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Width="500" Height="300" Margin="10">
+                            <StackPanel>
+                                <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock Margin="0 0 10 0" TextAlignment="Center"  Foreground="Gray" FontSize="22" FontWeight="Medium">Alternatywy:</TextBlock>
+                                    <TextBox x:Name="AlternativeTextBox" Controls:TextBoxHelper.ClearTextButton="True"  Width="200" Foreground="Gray" HorizontalAlignment="Center"></TextBox>
+                                    <Button x:Name="AlternativeBtn" Margin="10 0 45 0" FontSize="14" Click="AlternativeBtn_Click">Dodaj</Button>
+                                </StackPanel>
+                                <Grid>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                        <DataGrid x:Name="AlternativeDG" Width="200" MaxHeight="150"></DataGrid>
+                                    </ScrollViewer>
+                                </Grid>
+                                <Button x:Name="AlternativeClearBtn" Width="200" Margin="10 0 0 0" FontSize="14" Click="AlternativeClearBtn_Click">Wyczyść</Button>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+
+                    <Button x:Name="AcceptBtn" Width="200" Margin="10 0 0 0" FontSize="14" Click="AcceptBtn_Click">Zatwierdź</Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Kryteria">
+                <StackPanel Height="490" Width="1000">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="White" Opacity="0.8"/>
+                    </StackPanel.Background>
+                    <GroupBox Width="500" Margin="10">
+                        <StackPanel>
+                            <TextBlock Margin="10" TextAlignment="Center" FontSize="26" Foreground="Gray">Ocena</TextBlock>
+                            <!--<StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="CriterionFirstComboBox" Width="125"/>
+                                <Slider x:Name="CriterionSlider" Margin="10 0 10 0" Minimum="-9" Maximum="9" Value="1" Width="200" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0" />
+                                <ComboBox x:Name="CriterionLastComboBox" Width="125"/>
+                            </StackPanel>-->
+
+                            
+
+                            <Grid Height="400" MaxHeight="420">
+                                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid>
+                                            <StackPanel Margin="10" Orientation="Vertical"  x:Name="CriterionRelationStackPanel" />
+                                        </Grid>
+                                        <Button x:Name="CriterionAddRelationBtn" Margin="10 0 45 0" Width="200" FontSize="14" Click="CriterionAddRelationBtn_Click" >Dodaj</Button>
+                                    </StackPanel>
+
+                                </ScrollViewer>
+                            </Grid>
+
+                            <!--<StackPanel x:Name="CriterionRelationStackPanel" >
+                                --><!--<ComboBox x:Name="CriterionFirstComboBox" Width="125"/>
+                                <Slider x:Name="CriterionSlider" Margin="10 0 10 0" Minimum="-9" Maximum="9" Value="1" Width="200" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0" />
+                                <ComboBox x:Name="CriterionLastComboBox" Width="125"/>--><!--
+                            </StackPanel>-->
+
+                            <!--<TextBlock x:Name="CriterionSliderValue" Margin="10" TextAlignment="Center" FontSize="17" Foreground="LightCoral" Text="0"/>-->
+                            <Separator Background="LightCoral" Margin="0 20 0 0" />
+                            <!--<ComboBox x:Name="CriterionComboBox"/>-->
+                            <Grid Margin=" 0 20 0 0">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                    <DataGrid x:Name="CriteriumMatrixDG" Width="400"  MaxWidth="400" Height="400" MaxHeight="400"></DataGrid>
+                                </ScrollViewer>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Ocena kryteriów">
+                <StackPanel Height="600" Width="1000">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="White" Opacity="0.8"/>
+                    </StackPanel.Background>
+                    
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Alternatywy">
+                <StackPanel Height="600" Width="1000">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="White" Opacity="0.8"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Ocena alternatyw">
+                <StackPanel Height="600" Width="1000">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="White" Opacity="0.8"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Oblicz">
+                <StackPanel Height="600" Width="1000">
+                    <StackPanel.Background>
+                        <SolidColorBrush Color="White" Opacity="0.8"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+        <Separator Background="LightCoral"/>
+        <TextBlock TextAlignment="Right" Margin="0 0 10 0" Foreground="Gray">Created by Kamil Brożek</TextBlock>
+    </StackPanel>
+</Controls:MetroWindow>
