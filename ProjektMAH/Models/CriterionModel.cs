@@ -9,13 +9,13 @@ namespace ProjektMAH.Models
     public class CriterionModel
     {
         public String Name { get; set; }
-        public double Value { get; set; }
-        public int adress { get; set; }
+        //public double Value { get; set; }
+        //public int adress { get; set; }
 
         public CriterionModel(string _name)
         {
             Name = _name;
-            Value = 0;
+            //Value = 0;
         }
     }
 }

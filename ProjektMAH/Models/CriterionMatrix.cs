@@ -13,6 +13,7 @@ namespace ProjektMAH.Models
         private List<int> Adress = new List<int>();
 
 
+
         public void AddCriterion(string name)
         {
             Names.Add(name);
@@ -26,6 +27,21 @@ namespace ProjektMAH.Models
             int y = Names.IndexOf(nameY);
             Matrix[x, y] = value;
             Matrix[y, x] = 1 / value;
+
+            for(int i=0;i<Names.Count;i++)
+            {
+                Matrix[i, i] = 1;
+            }
+        }
+        public bool Check()
+        {
+            for(int i=0;i<Names.Count;i++)
+            {
+                for (int j = 0; j < Names.Count; j++)
+                    if (Matrix[i, j] == 0)
+                        return false;
+            }
+            return true;
         }
     }
 }

@@ -17,10 +17,7 @@ using ProjektMAH.Models;
 
 namespace ProjektMAH
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 
+
 
 
     public partial class MainWindow
@@ -28,20 +25,30 @@ namespace ProjektMAH
 #region Variables
         public List<CriterionModel> CriterionLst;
         public List<AlternativeModel> AlternativeLst;
+        public List<Relacja> RelacjaLST;
         public GoalModel Goal;
         public CriterionMatrixModel CriterionMatrix;
         public AlternativeMatrixModel AlternativeMatrix;
+        public CriterionMatrix CrMatrix;
 
         #endregion
         public MainWindow()
         {
             AlternativeLst = new List<AlternativeModel>();
             CriterionLst = new List<CriterionModel>();
+            CrMatrix = new CriterionMatrix();
+            RelacjaLST = new List<Relacja>();
             //CriterionSliderValue.Text = "";
 
             InitializeComponent();
         }
 
+#region Stwórz Model
+        /// <summary>
+        /// (Okno "Stwóz model") dodanie kryteriów do dataGrid CriteriumDG i do listy CriterionLst
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CriterionBtn_Click(object sender, RoutedEventArgs e)           // TU zacząć twórzyć matrix
         {
             if(CriterionTextBox.Text!="")
@@ -54,27 +61,41 @@ namespace ProjektMAH
 
 
         }
-
+        /// <summary>
+        /// (Okno "Stwóz model") Czyści CriterionLst i datagrid CriteriumDG
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CriterionClearBtn_Click(object sender, RoutedEventArgs e)
         {
             CriterionLst.Clear();
             CryteriumDG.ItemsSource = null;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AlternativeClearBtn_Click(object sender, RoutedEventArgs e)
         {
             AlternativeLst.Clear();
             AlternativeDG.ItemsSource = null;
         }
-
+        /// <summary>
+        /// Sprawdza czy dane są poprawne i tworzy pustą macierz kryteriów i dodaje do CB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AcceptBtn_Click(object sender, RoutedEventArgs e)
         {
             if (GoalTextBox.Text != "")
                 Goal = new GoalModel() { Name = GoalTextBox.Text };
             else
                 MessageBox.Show("error");
-            CriterionMatrix = new CriterionMatrixModel(CriterionLst.Count);
-
+            foreach (var v in CriterionLst)
+                CrMatrix.AddCriterion(v.Name); //mamy ilość
+            ItemX.ItemsSource = CriterionLst.Select(x => x.Name);
+            ItemY.ItemsSource = CriterionLst.Select(x => x.Name);
 
 
             //for (int i = 0; i < CriterionLst.Count; i++)
@@ -94,6 +115,7 @@ namespace ProjektMAH
 
             //}
 
+
         }
 
         private void AlternativeBtn_Click(object sender, RoutedEventArgs e)
@@ -105,45 +127,31 @@ namespace ProjektMAH
                 AlternativeDG.Items.Refresh();
             }
         }
+        #endregion
 
-        //private void CriterionAddRelationBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //TUUUUUUUUU
-        //    List<CriterionPairModel> cp = new List<CriterionPairModel>();
-        //    //foreach(object tb in CriterionRelationStackPanel.Children)
-        //    //{
-        //    //    string text = 
-        //    //}
-        //    var containerOfFirest = CriterionRelationStackPanel.Children.OfType<TextBlock>();
-        //    var containerOfRest = CriterionRelationStackPanel.Children.OfType<StackPanel>();
-        //    //int i = containerOfFirest.Count;
-        //    //Adresy 
-        //    for(int i=0;i<containerOfFirest.Count(); i++)
-        //    {
 
-        //    }
-        //}
-
+#region Kryteria Ocena
         private void ButtonSaveCriterionValue_Click(object sender, RoutedEventArgs e)
         {
+            if (SliderValue.Value != 0)
+            {
+                CrMatrix.SetValue(ItemX.SelectedItem.ToString(), ItemY.SelectedItem.ToString(), SliderValue.Value);
+                RelacjaLST.Add(new Relacja()
+                {
+                    C1 = ItemX.SelectedItem.ToString(),
+                    C2 = ItemY.SelectedItem.ToString(),
+                    V = SliderValue.Value
+                });
 
+                RelacjeDG.ItemsSource = RelacjaLST;
+                RelacjeDG.Items.Refresh();
+            }
+            else
+                MessageBox.Show("Podano złe parametry");
+
+            
         }
+#endregion
 
-        //private void CriterionSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        //{
-        //    if ((sender as Slider).Value == 0)
-        //        (sender as Slider).Value = 1;
-        //}
-
-        //private void CriterionSlider_SizeChanged(object sender, SizeChangedEventArgs e)
-        //{
-        //    //CriterionSliderValue.Text=CriterionSlider.Value.ToString();
-        //}
-
-        //private void CriterionSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        //{
-        //    //CriterionSliderValue.Text = CriterionSlider.Value.ToString();
-
-        //}
     }
 }

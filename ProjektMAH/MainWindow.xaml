@@ -40,7 +40,10 @@
                                 </StackPanel>
                                 <Grid>
                                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                                        <DataGrid x:Name="CryteriumDG" Width="200" MaxHeight="150"></DataGrid>
+                                        <DataGrid x:Name="CryteriumDG" Width="200" MaxHeight="150">
+                                            <DataGrid.Columns>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
                                     </ScrollViewer>
                                 </Grid>
                                 <Button x:Name="CriterionClearBtn" Width="200" Margin="10 0 0 0" FontSize="14" Click="CriterionClearBtn_Click">Wyczyść</Button>
@@ -77,27 +80,18 @@
                     <GroupBox Width="600" Margin="10">
                         <StackPanel>
                             <TextBlock Margin="10" TextAlignment="Center" FontSize="26" Foreground="Gray">Ocena</TextBlock>
-                            <!--<StackPanel Orientation="Horizontal">
-                                <ComboBox x:Name="CriterionFirstComboBox" Width="125"/>
-                                <Slider x:Name="CriterionSlider" Margin="10 0 10 0" Minimum="-9" Maximum="9" Value="1" Width="200" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0" />
-                                <ComboBox x:Name="CriterionLastComboBox" Width="125"/>
-                            </StackPanel>-->
 
                             <StackPanel Orientation="Horizontal">
                                 <ComboBox x:Name="ItemX" Width="150" Margin="40 20 0 0"/>
-                                <Slider x:Name="SliderValue" Minimum="-9" Maximum="9" Interval="1" Value="0" Width="200" AutoToolTipPlacement="BottomRight" Margin="10 20 10 0"/>
+                                <Slider x:Name="SliderValue" Minimum="1" Maximum="9"  Value="0" Width="200" SmallChange="1" AutoToolTipPlacement="BottomRight" Margin="10 20 10 0" TickFrequency="1" IsSnapToTickEnabled="True"/>
                                 <ComboBox x:Name="ItemY" Width="150" Margin="0 20 0 0"/>
                             </StackPanel>
                             <Button x:Name="ButtonSaveCriterionValue" Click="ButtonSaveCriterionValue_Click" Width="150" Height="35" Content="Dodaj"/>
                             <Grid Height="400" MaxHeight="420" Margin="0 50 0 0">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                     <StackPanel>
-                                        <DataGrid x:Name="Relacje" Width="400" AutoGenerateColumns="False">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Kryterium I" Width="*"/>
-                                                <DataGridTextColumn Header="Kryterium II" Width="*"/>
-                                                <DataGridTextColumn Header="Wartość" Width="*"/>
-                                            </DataGrid.Columns>
+                                        <DataGrid x:Name="RelacjeDG" Width="400" >
+
                                         </DataGrid>
                                     </StackPanel>
                                 </ScrollViewer>
