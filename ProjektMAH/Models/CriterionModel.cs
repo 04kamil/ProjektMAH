@@ -10,6 +10,7 @@ namespace ProjektMAH.Models
     {
         public String Name { get; set; }
         public double Value { get; set; }
+        public int adress { get; set; }
 
         public CriterionModel(string _name)
         {

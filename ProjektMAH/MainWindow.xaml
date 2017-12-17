@@ -18,6 +18,7 @@
             <TabControl.Background>
                 <SolidColorBrush Color="White" Opacity="1.0"/>
             </TabControl.Background>
+            
             <TabItem Header="Stwórz model">
                 <StackPanel Height="490" Width="1000">
                     <StackPanel.Background>
@@ -65,12 +66,15 @@
                     <Button x:Name="AcceptBtn" Width="200" Margin="10 0 0 0" FontSize="14" Click="AcceptBtn_Click">Zatwierdź</Button>
                 </StackPanel>
             </TabItem>
+            
+            
+            
             <TabItem Header="Kryteria">
                 <StackPanel Height="490" Width="1000">
                     <StackPanel.Background>
                         <SolidColorBrush Color="White" Opacity="0.8"/>
                     </StackPanel.Background>
-                    <GroupBox Width="500" Margin="10">
+                    <GroupBox Width="600" Margin="10">
                         <StackPanel>
                             <TextBlock Margin="10" TextAlignment="Center" FontSize="26" Foreground="Gray">Ocena</TextBlock>
                             <!--<StackPanel Orientation="Horizontal">
@@ -79,9 +83,27 @@
                                 <ComboBox x:Name="CriterionLastComboBox" Width="125"/>
                             </StackPanel>-->
 
-                            
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="ItemX" Width="150" Margin="40 20 0 0"/>
+                                <Slider x:Name="SliderValue" Minimum="-9" Maximum="9" Interval="1" Value="0" Width="200" AutoToolTipPlacement="BottomRight" Margin="10 20 10 0"/>
+                                <ComboBox x:Name="ItemY" Width="150" Margin="0 20 0 0"/>
+                            </StackPanel>
+                            <Button x:Name="ButtonSaveCriterionValue" Click="ButtonSaveCriterionValue_Click" Width="150" Height="35" Content="Dodaj"/>
+                            <Grid Height="400" MaxHeight="420" Margin="0 50 0 0">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <DataGrid x:Name="Relacje" Width="400" AutoGenerateColumns="False">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Kryterium I" Width="*"/>
+                                                <DataGridTextColumn Header="Kryterium II" Width="*"/>
+                                                <DataGridTextColumn Header="Wartość" Width="*"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
 
-                            <Grid Height="400" MaxHeight="420">
+                            <!--<Grid Height="400" MaxHeight="420">
                                 <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <Grid>
@@ -91,7 +113,7 @@
                                     </StackPanel>
 
                                 </ScrollViewer>
-                            </Grid>
+                            </Grid>-->
 
                             <!--<StackPanel x:Name="CriterionRelationStackPanel" >
                                 --><!--<ComboBox x:Name="CriterionFirstComboBox" Width="125"/>

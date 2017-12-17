@@ -94,9 +94,12 @@
   <ItemGroup>
     <Compile Include="Models\AlternativeMatrixModel.cs" />
     <Compile Include="Models\AlternativeModel.cs" />
+    <Compile Include="Models\CriterionMatrix.cs" />
+    <Compile Include="Models\CriterionPairModel.cs" />
     <Compile Include="Models\CriterionMatrixModel.cs" />
     <Compile Include="Models\CriterionModel.cs" />
     <Compile Include="Models\GoalModel.cs" />
+    <Compile Include="Models\TranslateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

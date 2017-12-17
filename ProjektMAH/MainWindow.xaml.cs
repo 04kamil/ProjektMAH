@@ -42,7 +42,7 @@ namespace ProjektMAH
             InitializeComponent();
         }
 
-        private void CriterionBtn_Click(object sender, RoutedEventArgs e)
+        private void CriterionBtn_Click(object sender, RoutedEventArgs e)           // TU zacząć twórzyć matrix
         {
             if(CriterionTextBox.Text!="")
             {
@@ -74,23 +74,25 @@ namespace ProjektMAH
             else
                 MessageBox.Show("error");
             CriterionMatrix = new CriterionMatrixModel(CriterionLst.Count);
-            //CriteriumMatrixDG.DataContext = CriterionMatrix;
-            ////CriterionFirstComboBox.ItemsSource = CriterionLst;
-            ////CriterionFirstComboBox.DisplayMemberPath = "Name";
 
-            //CriteriumMatrixDG.DataContext = CriterionMatrix;
-            ////CriterionLastComboBox.ItemsSource = CriterionLst;
-            ////CriterionLastComboBox.DisplayMemberPath = "Name";
-            //CriterionFirstComboBox
 
-            for(int i = 0;i<CriterionLst.Count;i++)
-            {
-                CriterionRelationStackPanel.Children.Add(new TextBlock() {Margin = new Thickness(10), TextAlignment = TextAlignment.Center, FontSize = 26, Foreground = Brushes.Gray, Text=CriterionLst[i].Name });
 
-                //CriterionRelationStackPanel.Children.Add(new Button() {Content="Add" });
-                CriterionRelationStackPanel.Children.Add(new Separator() { Background = Brushes.LightCoral, Margin = new Thickness(10) });
+            //for (int i = 0; i < CriterionLst.Count; i++)
+            //{
 
-            }
+            //    CriterionRelationStackPanel.Children.Add(new TextBlock() { Margin = new Thickness(10), TextAlignment = TextAlignment.Center, FontSize = 26, Foreground = Brushes.Gray, Text = CriterionLst[i].Name });
+            //    //int j = i;
+            //    for (int j = i + 1; j < CriterionLst.Count; j++)
+            //    {
+            //        StackPanel st = new StackPanel() { Orientation = Orientation.Horizontal };
+            //        st.Children.Add(new TextBlock() { Margin = new Thickness(10), TextAlignment = TextAlignment.Center, FontSize = 26, Foreground = Brushes.Gray, Text = CriterionLst[j].Name });
+            //        st.Children.Add(new Slider() { Minimum = 1, Maximum = 9, Width = 200, AutoToolTipPlacement = System.Windows.Controls.Primitives.AutoToolTipPlacement.BottomRight, AutoToolTipPrecision = 0 });
+            //        CriterionRelationStackPanel.Children.Add(st);
+            //    }
+            //    //CriterionRelationStackPanel.Children.Add(new Button() {Content="Add" });
+            //    CriterionRelationStackPanel.Children.Add(new Separator() { Background = Brushes.LightCoral, Margin = new Thickness(10) });
+
+            //}
 
         }
 
@@ -104,10 +106,26 @@ namespace ProjektMAH
             }
         }
 
-        private void CriterionAddRelationBtn_Click(object sender, RoutedEventArgs e)
+        //private void CriterionAddRelationBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //TUUUUUUUUU
+        //    List<CriterionPairModel> cp = new List<CriterionPairModel>();
+        //    //foreach(object tb in CriterionRelationStackPanel.Children)
+        //    //{
+        //    //    string text = 
+        //    //}
+        //    var containerOfFirest = CriterionRelationStackPanel.Children.OfType<TextBlock>();
+        //    var containerOfRest = CriterionRelationStackPanel.Children.OfType<StackPanel>();
+        //    //int i = containerOfFirest.Count;
+        //    //Adresy 
+        //    for(int i=0;i<containerOfFirest.Count(); i++)
+        //    {
+
+        //    }
+        //}
+
+        private void ButtonSaveCriterionValue_Click(object sender, RoutedEventArgs e)
         {
-            //if (CriterionLastComboBox.Text == CriterionFirstComboBox.Text)
-            //    MessageBox.Show("Nie można porównać tego samego elementu");
 
         }
 
