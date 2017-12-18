@@ -58,7 +58,7 @@
                                 </StackPanel>
                                 <Grid>
                                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                                        <DataGrid x:Name="AlternativeDG" Width="200" MaxHeight="150"></DataGrid>
+                                        <DataGrid x:Name="AlternativeDG" Width="200" MaxHeight="150"/>
                                     </ScrollViewer>
                                 </Grid>
                                 <Button x:Name="AlternativeClearBtn" Width="200" Margin="10 0 0 0" FontSize="14" Click="AlternativeClearBtn_Click">Wyczyść</Button>
@@ -69,10 +69,10 @@
                     <Button x:Name="AcceptBtn" Width="200" Margin="10 0 0 0" FontSize="14" Click="AcceptBtn_Click">Zatwierdź</Button>
                 </StackPanel>
             </TabItem>
-            
-            
-            
-            <TabItem Header="Kryteria">
+
+
+
+            <TabItem Header="Ocena kryteriow">
                 <StackPanel Height="490" Width="1000">
                     <StackPanel.Background>
                         <SolidColorBrush Color="White" Opacity="0.8"/>
@@ -90,34 +90,13 @@
                             <Grid Height="400" MaxHeight="420" Margin="0 50 0 0">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                     <StackPanel>
-                                        <DataGrid x:Name="RelacjeDG" Width="400" >
-
-                                        </DataGrid>
+                                        <DataGrid x:Name="RelacjeDG" Width="400" />
                                     </StackPanel>
                                 </ScrollViewer>
+                                <Button x:Name="AcceptCryterionBtn" Height="50" Width="100" Click="AcceptCryterionBtn_Click" Content="Zaakceptuj"/>
                             </Grid>
 
-                            <!--<Grid Height="400" MaxHeight="420">
-                                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
-                                    <StackPanel Orientation="Vertical">
-                                        <Grid>
-                                            <StackPanel Margin="10" Orientation="Vertical"  x:Name="CriterionRelationStackPanel" />
-                                        </Grid>
-                                        <Button x:Name="CriterionAddRelationBtn" Margin="10 0 45 0" Width="200" FontSize="14" Click="CriterionAddRelationBtn_Click" >Dodaj</Button>
-                                    </StackPanel>
-
-                                </ScrollViewer>
-                            </Grid>-->
-
-                            <!--<StackPanel x:Name="CriterionRelationStackPanel" >
-                                --><!--<ComboBox x:Name="CriterionFirstComboBox" Width="125"/>
-                                <Slider x:Name="CriterionSlider" Margin="10 0 10 0" Minimum="-9" Maximum="9" Value="1" Width="200" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0" />
-                                <ComboBox x:Name="CriterionLastComboBox" Width="125"/>--><!--
-                            </StackPanel>-->
-
-                            <!--<TextBlock x:Name="CriterionSliderValue" Margin="10" TextAlignment="Center" FontSize="17" Foreground="LightCoral" Text="0"/>-->
                             <Separator Background="LightCoral" Margin="0 20 0 0" />
-                            <!--<ComboBox x:Name="CriterionComboBox"/>-->
                             <Grid Margin=" 0 20 0 0">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                     <DataGrid x:Name="CriteriumMatrixDG" Width="400"  MaxWidth="400" Height="400" MaxHeight="400"></DataGrid>
@@ -127,28 +106,45 @@
                     </GroupBox>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Ocena kryteriów">
-                <StackPanel Height="600" Width="1000">
-                    <StackPanel.Background>
-                        <SolidColorBrush Color="White" Opacity="0.8"/>
-                    </StackPanel.Background>
-                    
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Alternatywy">
-                <StackPanel Height="600" Width="1000">
-                    <StackPanel.Background>
-                        <SolidColorBrush Color="White" Opacity="0.8"/>
-                    </StackPanel.Background>
-                </StackPanel>
-            </TabItem>
+            
+            
             <TabItem Header="Ocena alternatyw">
                 <StackPanel Height="600" Width="1000">
                     <StackPanel.Background>
                         <SolidColorBrush Color="White" Opacity="0.8"/>
                     </StackPanel.Background>
+                    <GroupBox Width="600" Margin="10">
+                        <StackPanel>
+                            <TextBlock Margin="10" TextAlignment="Center" FontSize="26" Foreground="Gray">Ocena</TextBlock>
+                            <ComboBox x:Name="ChooseCriterion" Width="200"/>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="ItemAX" Width="150" Margin="40 20 0 0"/>
+                                <Slider x:Name="SliderAValue" Minimum="1" Maximum="9"  Value="0" Width="200" SmallChange="1" AutoToolTipPlacement="BottomRight" Margin="10 20 10 0" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                                <ComboBox x:Name="ItemAY" Width="150" Margin="0 20 0 0"/>
+                            </StackPanel>
+                            <Button x:Name="ButtonSaveAlternativeValue" Click="ButtonSaveAlternativeValue_Click" Width="150" Height="35" Content="Dodaj"/>
+                            <Grid Height="400" MaxHeight="420" Margin="0 50 0 0">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                    <StackPanel>
+                                        <DataGrid x:Name="RelacjeADG" Width="400" />
+                                    </StackPanel>
+                                </ScrollViewer>
+                                <Button x:Name="AcceptABtn" Height="50" Width="100" Click="AcceptABtn_Click" Content="Zaakceptuj"/>
+                            </Grid>
+
+                            <Separator Background="LightCoral" Margin="0 20 0 0" />
+                            <Grid Margin=" 0 20 0 0">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                    <DataGrid x:Name="AlternativeMatrixDG" Width="400"  MaxWidth="400" Height="400" MaxHeight="400"></DataGrid>
+                                </ScrollViewer>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
                 </StackPanel>
             </TabItem>
+            
+            
+            
             <TabItem Header="Oblicz">
                 <StackPanel Height="600" Width="1000">
                     <StackPanel.Background>

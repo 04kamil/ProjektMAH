@@ -26,24 +26,26 @@ namespace ProjektMAH
         public List<CriterionModel> CriterionLst;
         public List<AlternativeModel> AlternativeLst;
         public List<Relacja> RelacjaLST;
+        public List<Relacja> RelacjaALST;
+        public List<AlternativeMatrix2>AM2;
         public GoalModel Goal;
         public CriterionMatrixModel CriterionMatrix;
-        public AlternativeMatrixModel AlternativeMatrix;
         public CriterionMatrix CrMatrix;
+        public AlternativeMatrix AlMatrix;
 
         #endregion
         public MainWindow()
         {
             AlternativeLst = new List<AlternativeModel>();
             CriterionLst = new List<CriterionModel>();
+            AM2 = new List<AlternativeMatrix2>();
             CrMatrix = new CriterionMatrix();
+            AlMatrix = new AlternativeMatrix();
             RelacjaLST = new List<Relacja>();
-            //CriterionSliderValue.Text = "";
-
+            RelacjaALST = new List<Relacja>();
             InitializeComponent();
         }
 
-#region Stwórz Model
         /// <summary>
         /// (Okno "Stwóz model") dodanie kryteriów do dataGrid CriteriumDG i do listy CriterionLst
         /// </summary>
@@ -58,7 +60,21 @@ namespace ProjektMAH
                 CryteriumDG.Items.Refresh();
             }
 
+        }
+        private void AlternativeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (AlternativeTextBox.Text != "")
+            {
+                AlternativeLst.Add(new AlternativeModel(AlternativeTextBox.Text));
+                AlternativeDG.ItemsSource = AlternativeLst;
+                AlternativeDG.Items.Refresh();
+            }
+        }
 
+        private void AlternativeClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AlternativeLst.Clear();
+            AlternativeDG.ItemsSource = null;
 
         }
         /// <summary>
@@ -71,16 +87,14 @@ namespace ProjektMAH
             CriterionLst.Clear();
             CryteriumDG.ItemsSource = null;
         }
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AlternativeClearBtn_Click(object sender, RoutedEventArgs e)
-        {
-            AlternativeLst.Clear();
-            AlternativeDG.ItemsSource = null;
-        }
+
         /// <summary>
         /// Sprawdza czy dane są poprawne i tworzy pustą macierz kryteriów i dodaje do CB
         /// </summary>
@@ -97,37 +111,15 @@ namespace ProjektMAH
             ItemX.ItemsSource = CriterionLst.Select(x => x.Name);
             ItemY.ItemsSource = CriterionLst.Select(x => x.Name);
 
-
-            //for (int i = 0; i < CriterionLst.Count; i++)
-            //{
-
-            //    CriterionRelationStackPanel.Children.Add(new TextBlock() { Margin = new Thickness(10), TextAlignment = TextAlignment.Center, FontSize = 26, Foreground = Brushes.Gray, Text = CriterionLst[i].Name });
-            //    //int j = i;
-            //    for (int j = i + 1; j < CriterionLst.Count; j++)
-            //    {
-            //        StackPanel st = new StackPanel() { Orientation = Orientation.Horizontal };
-            //        st.Children.Add(new TextBlock() { Margin = new Thickness(10), TextAlignment = TextAlignment.Center, FontSize = 26, Foreground = Brushes.Gray, Text = CriterionLst[j].Name });
-            //        st.Children.Add(new Slider() { Minimum = 1, Maximum = 9, Width = 200, AutoToolTipPlacement = System.Windows.Controls.Primitives.AutoToolTipPlacement.BottomRight, AutoToolTipPrecision = 0 });
-            //        CriterionRelationStackPanel.Children.Add(st);
-            //    }
-            //    //CriterionRelationStackPanel.Children.Add(new Button() {Content="Add" });
-            //    CriterionRelationStackPanel.Children.Add(new Separator() { Background = Brushes.LightCoral, Margin = new Thickness(10) });
-
-            //}
+            foreach (var v in AlternativeLst)
+                AlMatrix.AddAlternative(v.Name); //mamy ilość
+            ItemAX.ItemsSource = AlternativeLst.Select(x => x.Name);
+            ItemAY.ItemsSource = AlternativeLst.Select(x => x.Name);
 
 
         }
 
-        private void AlternativeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (AlternativeTextBox.Text != "")
-            {
-                AlternativeLst.Add(new AlternativeModel(AlternativeTextBox.Text));
-                AlternativeDG.ItemsSource = AlternativeLst;
-                AlternativeDG.Items.Refresh();
-            }
-        }
-        #endregion
+
 
 
 #region Kryteria Ocena
@@ -151,7 +143,54 @@ namespace ProjektMAH
 
             
         }
-#endregion
+        #endregion
 
+        private void AcceptCryterionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //bool test = CrMatrix.Check();
+            if(CrMatrix.Check() == false)
+            {
+                MessageBox.Show("Uzupełnij dane poprawnie");
+
+            }
+            else
+            {
+                CrMatrix.WyliczWartosci();
+            }
+        }
+
+        private void ButtonSaveAlternativeValue_Click(object sender, RoutedEventArgs e)
+        {
+            if (SliderAValue.Value != 0)
+            {
+                AlMatrix.SetValue(ItemAX.SelectedItem.ToString(), ItemAY.SelectedItem.ToString(), SliderAValue.Value);
+                RelacjaALST.Add(new Relacja()
+                {
+                    C1 = ItemAX.SelectedItem.ToString(),
+                    C2 = ItemAY.SelectedItem.ToString(),
+                    V = SliderAValue.Value
+                });
+
+                RelacjeADG.ItemsSource = RelacjaALST;
+                RelacjeADG.Items.Refresh();
+            }
+            else
+                MessageBox.Show("Podano złe parametry Alternatyw");
+
+        }
+
+        private void AcceptABtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (AlMatrix.Check() == false)
+            {
+                MessageBox.Show("Uzupełnij dane poprawnie");
+
+            }
+            else
+            {
+
+                AlMatrix.WyliczWartosci();
+            }
+        }
     }
 }

@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace ProjektMAH.Models
 {
-    public class CriterionMatrix
+    public class AlternativeMatrix
     {
         private double[,] Matrix = new double[0, 0];
         private List<string> Names = new List<string>();
         private List<int> Adress = new List<int>();
-        private List<double> WartościKryteriow = new List<double>();
+        private List<double> WartościAlternatyw = new List<double>();
         private double Sum { get; set; }
+        public List<string> Kryteria { get; set; }
 
 
 
-        public void AddCriterion(string name)
+        public void AddAlternative(string name)
         {
             Names.Add(name);
             Adress.Add(Adress.Count);//może.... sie przyda
@@ -30,14 +31,14 @@ namespace ProjektMAH.Models
             Matrix[x, y] = value;
             Matrix[y, x] = 1 / value;
 
-            for(int i=0;i<Names.Count;i++)
+            for (int i = 0; i < Names.Count; i++)
             {
                 Matrix[i, i] = 1;
             }
         }
         public bool Check()
         {
-            for(int i=0;i<Names.Count;i++)
+            for (int i = 0; i < Names.Count; i++)
             {
                 for (int j = 0; j < Names.Count; j++)
                     if (Matrix[i, j] == 0)
@@ -48,26 +49,24 @@ namespace ProjektMAH.Models
 
         public void WyliczWartosci()
         {
-            WartościKryteriow = new List<double>();
-            for(int i =0;i< Names.Count;i++)
+            WartościAlternatyw = new List<double>();
+            for (int i = 0; i < Names.Count; i++)
             {
-                double sum=0;
-                for(int x=0;x< Names.Count; x++)
+                double sum = 0;
+                for (int x = 0; x < Names.Count; x++)
                 {
                     sum = sum + Matrix[i, x];
                 }
-                WartościKryteriow.Add(Math.Pow(sum, 1.0 / Names.Count));
+                WartościAlternatyw.Add(Math.Pow(sum, 1.0 / Names.Count));
             }
 
-            Sum = WartościKryteriow.Sum();
+            Sum = WartościAlternatyw.Sum();
 
             double testValue = 0;
-            for(int i =0;i<WartościKryteriow.Count;i++)
+            for (int i = 0; i < WartościAlternatyw.Count; i++)
             {
-                testValue = testValue + (WartościKryteriow[i] / Sum)*Names.Count;
+                testValue = testValue + (WartościAlternatyw[i] / Sum) * Names.Count;
             }
         }
-
-
     }
 }

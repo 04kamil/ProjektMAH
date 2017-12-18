@@ -9,12 +9,11 @@ namespace ProjektMAH.Models
     public class AlternativeModel
     {
         public String Name { get; set; }
-        public double Value { get; set; }
 
         public AlternativeModel(string _name)
         {
             Name = _name;
-            Value = 0;
+            //Value = 0;
         }
     }
 }

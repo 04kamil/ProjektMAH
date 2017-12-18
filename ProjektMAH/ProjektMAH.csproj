@@ -92,7 +92,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\AlternativeMatrixModel.cs" />
+    <Compile Include="Models\AlternativeMatrix.cs" />
+    <Compile Include="Models\AlternativeMatrix2.cs" />
     <Compile Include="Models\AlternativeModel.cs" />
     <Compile Include="Models\CriterionMatrix.cs" />
     <Compile Include="Models\CriterionMatrixModel.cs" />
